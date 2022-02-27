@@ -38,10 +38,10 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       console.log(image_url);
       try {
         var filteredPath = await filterImageFromURL(image_url);
-        res.sendFile(filteredPath);
+        res.status(200).sendFile(filteredPath);
       } catch (error) {
-        console.log(error)
-        res.status(422).send(error)
+        console.log(error);
+        res.status(422).send("Can't process file! " + image_url);
       }
       
       res.on("finish", () => {
